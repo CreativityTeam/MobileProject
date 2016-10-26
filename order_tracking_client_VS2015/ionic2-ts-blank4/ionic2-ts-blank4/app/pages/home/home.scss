@@ -1,0 +1,27 @@
+.home {
+    .center {
+        text-align: center;
+    }
+
+    .scroll-content {
+        height: 100%;
+    }
+
+    #map {
+        float: left;
+        width: 70%;
+        height: 100%;        
+    }
+
+    #direction {
+        float: right;
+        width: 30%;
+        height: 100%;
+        overflow: scroll;
+    }
+
+    .spinner svg {
+        width: 19% !important;
+        height: 85px !important;
+    }
+}
