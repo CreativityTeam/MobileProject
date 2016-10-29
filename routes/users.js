@@ -246,7 +246,7 @@ router.get('/findresfav/:token',function(req,res){
     var token = req.params.token;
     if(token){
         var decoded = jwt.decode(token,configAuth.secret);
-        User.findResFav(decoded_id,function(err,user){
+        User.findResFav(decoded._id,function(err,user){
             if(err) throw err;
             if(user.res_favorite.length == 0){
                 res.json({
@@ -267,7 +267,7 @@ router.get('/findfoodfav/:token',function(req,res){
     var token = req.params.token;
     if(token){
         var decoded = jwt.decode(token,configAuth.secret);
-        User.findFoodFav(decoded_id,function(err,user){
+        User.findFoodFav(decoded._id,function(err,user){
             if(err) throw err;
             if(user.foods_favorite.length == 0){
                 res.json({

@@ -73,18 +73,11 @@ router.get('/findad/:id',function(req,res){
 router.get('/finduser/:id',function(req,res){
     Restaurant.findUserBelong(req.params.id,function(err,restaurant){
         if(err) throw err;
-        if(!restaurant){
-            res.json({
-                success:false,
-                msg : "Your restaurant has no user, please invite your friends"
-            });    
-        }else{
-            res.json({
-                success:true,
-                msg : "Find done",
-                data : restaurant.user_id
-            });
-        }
+        res.json({
+            success: true,
+            msg: "Find done",
+            data: restaurant.user_id
+        });
     });
 });
 
@@ -230,10 +223,10 @@ router.get('/findpublicity/:id',function(req,res){
 
 /**Input : ID Photo */
 /**Output : Array Restaurant */
-router.put('/updatephoto/:id',function(req,res){
+router.put('/updatephoto/:id/:idphoto',function(req,res){
     Restaurant.getRestaurantById(req.params.id,function(err,restaurant){
         if(err) throw err;
-        restaurant.photos.push(req.body._id);
+        restaurant.photos.push(req.params.idphoto);
         Restaurant.createRestaurant(restaurant,function(err,restaurant){
             if(err) throw err;
             res.json({
@@ -246,10 +239,10 @@ router.put('/updatephoto/:id',function(req,res){
 
 /**Input : ID comments */
 /**Output : Array Restaurant */
-router.put('/updatecomment/:id',function(req,res){
+router.put('/updatecomment/:id/:idcomment',function(req,res){
     Restaurant.getRestaurantById(req.params.id,function(err,restaurant){
         if(err) throw err;
-        restaurant.comments.push(req.body._id);
+        restaurant.comments.push(req.params.idcomment);
         Restaurant.createRestaurant(restaurant,function(err,restaurant){
             if(err) throw err;
             res.json({
@@ -262,10 +255,10 @@ router.put('/updatecomment/:id',function(req,res){
 
 /**Input : ID ratings */
 /**Output : Array Restaurant */
-router.put('/updaterating/:id',function(req,res){
+router.put('/updaterating/:id/:idrating',function(req,res){
     Restaurant.getRestaurantById(req.params.id,function(err,restaurant){
         if(err) throw err;
-        restaurant.ratings.push(req.body._id);
+        restaurant.ratings.push(req.params.idrating);
         Restaurant.createRestaurant(restaurant,function(err,restaurant){
             if(err) throw err;
             res.json({
@@ -278,10 +271,10 @@ router.put('/updaterating/:id',function(req,res){
 
 /**Input : ID services */
 /**Output : Array Restaurant */
-router.put('/updateservices/:id',function(req,res){
+router.put('/updateservices/:id/:idservice',function(req,res){
     Restaurant.getRestaurantById(req.params.id,function(err,restaurant){
         if(err) throw err;
-        restaurant.services.push(req.body._id);
+        restaurant.services.push(req.params.idservice);
         Restaurant.createRestaurant(restaurant,function(err,restaurant){
             if(err) throw err;
             res.json({
@@ -294,10 +287,10 @@ router.put('/updateservices/:id',function(req,res){
 
 /**Input : ID publicities */
 /**Output : Array Restaurant */
-router.put('/updatepublicities/:id',function(req,res){
+router.put('/updatepublicities/:id/:idpublicity',function(req,res){
     Restaurant.getRestaurantById(req.params.id,function(err,restaurant){
         if(err) throw err;
-        restaurant.publicities.push(req.body._id);
+        restaurant.publicities.push(req.params.idpublicity);
         Restaurant.createRestaurant(restaurant,function(err,restaurant){
             if(err) throw err;
             res.json({

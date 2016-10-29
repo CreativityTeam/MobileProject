@@ -11,8 +11,8 @@ var RestaurantSchema = mongoose.Schema({
         type : String
     },
     location:{
-        longitude : String,
-        latitude : String
+        longitude : Number,
+        latitude : Number
     },
     comments:[{
         type: mongoose.Schema.Types.ObjectId,
