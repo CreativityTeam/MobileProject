@@ -96,3 +96,8 @@ module.exports.findOneRes = function(longitude,latitude,callback){
     };
     Restaurant.findOne(query,callback);
 };
+
+module.exports.deleteRestaurant = function(id,callback){
+    var query = { _id : id};
+    Restaurant.findOneAndRemove(query,callback);
+};
