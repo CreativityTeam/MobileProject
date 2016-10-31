@@ -320,13 +320,14 @@ router.put('/updateinfo/:id',function(req,res){
     });
 });
 
-router.delete('/deletecomment/:id',function(req,res){
+router.delete('/deletecomment/:id/:idcomment',function(req,res){
     Restaurant.getRestaurantById(req.params.id,function(err,restaurant){
         if(err) throw err;
         for(var i = 0;i < restaurant.comments.length ; i++){
-            if(restaurant.comments[i] == req.body._id){
-                delete restaurant.comments[i];
-                restaurant.comments.length--;
+            if(restaurant.comments[i] == req.params.idcomment){
+                //delete restaurant.comments[i];
+                //restaurant.comments.length--;
+                restaurant.comments.splice(i,1);
             }
         }
         Restaurant.createRestaurant(restaurant,function(err,restaurant){
@@ -340,13 +341,14 @@ router.delete('/deletecomment/:id',function(req,res){
     });
 });
 
-router.delete('/deletephoto/:id',function(req,res){
+router.delete('/deletephoto/:id/:idphoto',function(req,res){
     Restaurant.getRestaurantById(req.params.id,function(err,restaurant){
         if(err) throw err;
         for(var i = 0;i < restaurant.photos.length ; i++){
-            if(restaurant.photos[i] == req.body._id){
-                delete restaurant.photos[i];
-                restaurant.photos.length--;
+            if(restaurant.photos[i] == req.params.idphoto){
+                //delete restaurant.photos[i];
+                //restaurant.photos.length--;
+                restaurant.photos.splice(i,1);
             }
         }
         Restaurant.createRestaurant(restaurant,function(err,restaurant){
@@ -360,13 +362,14 @@ router.delete('/deletephoto/:id',function(req,res){
     });
 });
 
-router.delete('/deleteservice/:id',function(req,res){
+router.delete('/deleteservice/:id/:idservice',function(req,res){
     Restaurant.getRestaurantById(req.params.id,function(err,restaurant){
         if(err) throw err;
         for(var i = 0;i < restaurant.services.length ; i++){
-            if(restaurant.services[i] == req.body._id){
-                delete restaurant.services[i];
-                restaurant.services.length--;
+            if(restaurant.services[i] == req.params.idservice){
+                //delete restaurant.services[i];
+                //restaurant.services.length--;
+                restaurant.services.splice(i,1);
             }
         }
         Restaurant.createRestaurant(restaurant,function(err,restaurant){
@@ -380,13 +383,14 @@ router.delete('/deleteservice/:id',function(req,res){
     });
 });
 
-router.delete('/deletepublicity/:id',function(req,res){
+router.delete('/deletepublicity/:id/:idpublicity',function(req,res){
     Restaurant.getRestaurantById(req.params.id,function(err,restaurant){
         if(err) throw err;
         for(var i = 0;i < restaurant.publicities.length ; i++){
-            if(restaurant.publicities[i] == req.body._id){
-                delete restaurant.publicities[i];
-                restaurant.publicities.length--;
+            if(restaurant.publicities[i] == req.params.idpublicity){
+                //delete restaurant.publicities[i];
+                //restaurant.publicities.length--;
+                restaurant.publicities.splice(i,1);
             }
         }
         Restaurant.createRestaurant(restaurant,function(err,restaurant){
@@ -396,6 +400,16 @@ router.delete('/deletepublicity/:id',function(req,res){
                     msg : "Successfully Delete",
                     data : restaurant.publicities
             });
+        });
+    });
+});
+
+router.delete('/deleterestaurant/:id',function(req,res){
+    Restaurant.deleteRestaurant(req.params.id,function(err){
+        if(err) throw err;
+        res.json({
+            success : true,
+            msg : "Successfully Delete"
         });
     });
 });
