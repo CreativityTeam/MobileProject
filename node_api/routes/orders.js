@@ -58,13 +58,30 @@ router.get('/findinfo/all',function(req,res){
 
 /**Request 
  * param 
- *  id: Order ID 
+ *  shipper_id: User ID 
  * */
 /**Response
  * data: order
  */
-router.get('/findinfo/:id',function(req,res){
-    Order.getOrderById(req.params.id,function(err,order){
+router.get('/findinfobyshipper/:shipper_id',function(req,res){
+    Order.getOrderByShipper(req.params.shipper_id,function(err,order){
+        if(err) throw err;
+        res.json({
+            success:true,
+            data : order
+        });
+    });
+});
+
+/**Request 
+ * param 
+ *  user_order: User ID 
+ * */
+/**Response
+ * data: order
+ */
+router.get('/findinfobyuser/:user_order',function(req,res){
+    Order.getOrderByUserOrder(req.params.user_order,function(err,order){
         if(err) throw err;
         res.json({
             success:true,
@@ -124,6 +141,29 @@ router.put('/updateinfo/:id',function(req,res){
         order.time_ordered = req.body.content;
         order.location_ordered = req.body.location_ordered;
         order.comment = req.body.comment;
+        Order.createOrder(order,function(err,order){
+            if(err) throw err;
+            res.json({
+                success : true,
+                msg : "Successfully update",
+                data : order
+            });
+        });
+    });
+});
+
+/**Request
+ * param
+ *  id: Order ID
+ * body
+ *  status */
+/**Response
+ * data: order
+ */
+router.put('/updatestatus/:id',function(req,res){    
+    Order.getOrderById(req.params.id,function(err,order){
+        if(err) throw err; 
+        order.status = req.body.status;               
         Order.createOrder(order,function(err,order){
             if(err) throw err;
             res.json({

@@ -66,6 +66,16 @@ module.exports.getOrderById = function(id,callback){
     Order.findById(id,callback);
 };
 
+module.exports.getOrderByShipper = function(shipper,callback){
+    var query = {'shipper': shipper};
+    Order.find(query,callback);
+};
+
+module.exports.getOrderByUserOrder = function(userOrder,callback){
+    var query = {'user_order': userOrder};
+    Order.find(query,callback);
+};
+
 /**Find Food belong */
 module.exports.findFoods = function(id,callback){
     Order.findById(id).populate('foods.food_id').exec(callback);
