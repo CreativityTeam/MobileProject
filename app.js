@@ -12,7 +12,7 @@ var flash = require('connect-flash');
 var cors = require('cors');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/mobile',function(err){
+mongoose.connect('mongodb://admin:admin@ds048319.mlab.com:48319/mobileapp',function(err){
     if(err) throw ('Please check your connection');
     console.log('Connect Successfully');
 });
@@ -76,6 +76,9 @@ var users = require('./routes/users');
 var restaurants = require('./routes/restaurants');
 var ratings = require('./routes/ratings');
 var photos = require('./routes/photos');
+var foods = require('./routes/foods');
+var comments = require('./routes/comments');
+var orders = require('./routes/orders');
 
 /**URL for model */
 //* Its purpose to call the right api for model
@@ -83,6 +86,9 @@ app.use('/api/users',users);
 app.use('/api/restaurants',restaurants);
 app.use('/api/ratings',ratings);
 app.use('/api/photos',photos);
+app.use('/api/comments',comments);
+app.use('/api/foods',foods);
+app.use('/api/orders',orders);
 
 /**Set up Server */
 app.listen(port,function(){
