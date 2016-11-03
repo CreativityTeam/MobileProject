@@ -80,17 +80,11 @@ router.get('/findname/:name', function (req, res) {
 router.get('/findprice/:price', function (req, res) {
     Service.getServiceByPrice(req.params.price, function (err, services) {
         if (err) throw err;
-        if (!services) {
-            res.json({
-                success: true
-            })
-        } else {
             res.json({
                 success: true,
                 msg: 'Service was found!',
                 data: services
             });
-        }
     });
 });
 
