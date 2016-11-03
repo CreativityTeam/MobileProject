@@ -9,7 +9,6 @@ var jwt = require('jwt-simple');
 
 
 router.post('/register',function(req,res){
-    console.log(req.body);
     var email = req.body.email;
     var name = req.body.firstname + " " + req.body.lastname;
     var password = req.body.password
