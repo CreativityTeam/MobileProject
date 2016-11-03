@@ -21,26 +21,11 @@ router.post('/create', function (req, res) {
     });
 
     Publicity.createPublicity(newPublicity, function (err, publicity) {
-        if (err) throw err;
+        if(err) throw err;
         res.json({
             success: true,
             msg: "Successfully Create Publicity",
             data: publicity
-        });
-    });
-});
-
-/**Request
- */
-/**Response
- * publicities
- */
-router.get('/findinfo/all', function (req, res) {
-    Publicity.getAllPublicity(function (err, publicities) {
-        if (err) throw err;
-        res.json({
-            success: true,
-            data: publicities
         });
     });
 });
@@ -53,8 +38,8 @@ router.get('/findinfo/all', function (req, res) {
  * publicity
  */
 router.get('/findinfo/:id', function (req, res) {
-    Publicity.getPublicityById(req.params.id, function (err, publicity) {
-        if (err) throw err;
+    Publicity.getPublicityById(req.params.id, function (err, publicity){
+        if(err) throw err;
         res.json({
             success: true,
             data: publicity
@@ -70,8 +55,8 @@ router.get('/findinfo/:id', function (req, res) {
  * publicity
  */
 router.get('/findinfo/:name', function (req, res) {
-    Publicity.getPublicityByName(req.params.publicity_name, function (err, publicity) {
-        if (err) throw err;
+    Publicity.getPublicityByName(req.params.name, function (err, publicity) {
+        if(err) throw err;
         res.json({
             success: true,
             msg: "Publicity was found!",
@@ -89,13 +74,13 @@ router.get('/findinfo/:name', function (req, res) {
  */
 router.get('/findPhotos/:id', function (req, res) {
     Publicity.findPhotosBelong(req.params.id, function (err, publicity) {
-        if (err) throw err;
-        if (publicity.photos == null) {
+        if(err) throw err;
+        if(publicity.photos == null){
             res.json({
                 success: true,
                 msg: "No Photo was found!"
             })
-        } else {
+        }else {
             res.json({
                 success: true,
                 msg: "Photo was found!",
@@ -110,24 +95,45 @@ router.get('/findPhotos/:id', function (req, res) {
  *  publicity_id
  *  body
  *  publicity_name
- *  publicity_desciption
+ * */
+/**Response
+ * publicity
+ */
+router.put('/updateinfo/:id', function (req, res) {
+    Publicity.getPublicityById(req.params.id, function (err, publicity) {
+        if(err) throw err;
+        publicity.publicity_name = req.body.publicity_name;
+        publicity.publicity_desciption = req.body.publicity_desciption;
+        Publicity.createPublicity(publicity, function (err, publicity) {
+            if(err) throw err;
+            res.json({
+                success : true,
+                msg : "Update Successfully!",
+                data : publicity
+            });
+        });
+    });
+});
+
+/**Request
+ * param
+ *  publicity_id
+ *  body
  *  publicity_price
  * */
 /**Response
  * publicity
  */
-router.put('/updatinfo/:id', function (req, res) {
+router.put('/updateprice/:id', function (req, res) {
     Publicity.getPublicityById(req.params.id, function (err, publicity) {
-        if (err) throw err;
-        publicity.publicity_name = req.body.publicity_name;
-        publicity.publicity_desciption = req.body.publicity_desciption;
+        if(err) throw err;
         publicity.publicity_price = req.body.publicity_price;
         Publicity.createPublicity(publicity, function (err, publicity) {
-            if (err) throw err;
+            if(err) throw err;
             res.json({
-                success: true,
-                msg: "Update Successfully!",
-                data: publicity
+                success : true,
+                msg : "Update Successfully",
+                data : publicity
             });
         });
     });
@@ -140,35 +146,49 @@ router.put('/updatinfo/:id', function (req, res) {
 /**Response
  * publicity
  */
-router.put('/updatephoto/:id/:idphoto', function (req, res) {
-    Publicity.getPublicityById(req.params.id, function (err, publicity) {
-        if (err) throw err;
+router.put('/updatephoto/:id/:idphoto',function(req,res){
+    Publicity.getPublicityById(req.params.id,function(err, publicity){
+        if(err) throw err;
         publicity.photos.push(req.params.idphoto);
-        Publicity.createPublicity(publicity, function (err) {
-            if (err) throw err;
+        Publicity.createPublicity(publicity,function(err){
+            if(err) throw err;
             res.json({
-                success: true,
-                msg: "Update Successfully!"
+                success : true,
+                msg : "Update Successfully!!"
             });
         });
     });
 });
 
-router.delete('/deletephoto/:id', function (req, res) {
+router.delete('/deletedesciption/:id', function (req, res) {
     Publicity.getPublicityById(req.params.id, function (err, publicity) {
-        if (err) throw err;
-        for (var i = 0; i < publicity.photos.length; i++) {
-            if (publicity.photos[i] == req.body._id) {
-                delete publicity.photos[i];
-                publicity.photos.length--;
+        if(err) throw err;
+        delete publicity.publicity_desciption;
+        Publicity.createPublicity(publicity,function(err, publicity){
+            if(err) throw err;
+            res.json({
+                success : true,
+                msg : "Delete Successfully",
+                data: publicity.publicity_desciption
+            });
+        });
+    });
+});
+
+router.delete('/deletephoto/:id',function(req,res){
+    Publicity.getPublicityById(req.params.id,function(err,publicity){
+        if(err) throw err;
+        for(var i = 0;i < publicity.photos.length ; i++){
+            if(publicity.photos[i] == req.body._id){
+                publicity.photos.splice(i,1);
             }
         }
-        Publicity.createPublicity(publicity, function (err, publicity) {
-            if (err) throw err;
+        Publicity.createPublicity(publicity,function(err,publicity){
+            if(err) throw err;
             res.json({
-                success: true,
-                msg: "Delete Successfully",
-                data: publicity.photos
+                success : true,
+                msg : "Delete Successfully",
+                data : publicity.photos
             });
         });
     });
@@ -176,7 +196,7 @@ router.delete('/deletephoto/:id', function (req, res) {
 
 router.delete('/deletepublicity/:id', function (req, res) {
     Publicity.removePublicity(req.params.id, function (err) {
-        if (err) throw err;
+        if(err) throw err;
         res.json({
             success: true,
             msg: "Delete successfully!"
