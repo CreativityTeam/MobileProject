@@ -22,10 +22,6 @@ module.exports.createService = function (newService, callback) {
     newService.save(callback);
 };
 
-module.exports.getAllService = function (callback) {
-    Service.find(callback);
-};
-
 module.exports.getServiceById = function (id, callback) {
     Service.findById(id, callback);
 };
