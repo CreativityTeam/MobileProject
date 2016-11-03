@@ -22,7 +22,7 @@ var PublicitySchema = mongoose.Schema({
     }
 });
 
-var Publicity = module.exports = moongose.model('publicity', PublicitySchema);
+var Publicity = module.exports = mongoose.model('publicity', PublicitySchema);
 
 /*Create Publicity*/
 module.exports.createPublicity = function (newPublicity, callback) {
