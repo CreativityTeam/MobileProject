@@ -59,7 +59,7 @@ router.get('/findinfo/:id', function (req, res) {
  * service
  */
 
-router.get('/findinfo/:name', function (req, res) {
+router.get('/findname/:name', function (req, res) {
     Service.getServiceByName(req.params.name, function (err, service) {
         if (err) throw err;
         res.json({
@@ -77,20 +77,14 @@ router.get('/findinfo/:name', function (req, res) {
  * services
  */
 
-router.get('/findinfo/:price', function (req, res) {
+router.get('/findprice/:price', function (req, res) {
     Service.getServiceByPrice(req.params.price, function (err, services) {
         if (err) throw err;
-        if (!services) {
-            res.json({
-                success: true
-            })
-        } else {
             res.json({
                 success: true,
                 msg: 'Service was found!',
                 data: services
             });
-        }
     });
 });
 

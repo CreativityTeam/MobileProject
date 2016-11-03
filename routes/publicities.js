@@ -37,7 +37,7 @@ router.post('/create', function (req, res) {
 /**Response
  * publicity
  */
-router.get('/findinfo/:id', function (req, res) {
+router.get('/findPublicity/:id', function (req, res) {
     Publicity.getPublicityById(req.params.id, function (err, publicity){
         if(err) throw err;
         res.json({
@@ -54,7 +54,7 @@ router.get('/findinfo/:id', function (req, res) {
 /**Response
  * publicity
  */
-router.get('/findinfo/:name', function (req, res) {
+router.get('/findName/:name', function (req, res) {
     Publicity.getPublicityByName(req.params.name, function (err, publicity) {
         if(err) throw err;
         res.json({
