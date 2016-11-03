@@ -34,21 +34,6 @@ router.post('/create', function (req, res) {
 });
 
 /**Request
- * */
-/**Response
- * services
- */
-router.get('/findinfo/all', function (req, res) {
-    Service.getAllService(function (err, services) {
-        if (err) throw err;
-        res.json({
-            success: true,
-            data: services
-        });
-    });
-});
-
-/**Request
  * param
  *  service_id
  * */
@@ -75,7 +60,7 @@ router.get('/findinfo/:id', function (req, res) {
  */
 
 router.get('/findinfo/:name', function (req, res) {
-    Service.getServiceByName(req.params.service_name, function (err, service) {
+    Service.getServiceByName(req.params.name, function (err, service) {
         if (err) throw err;
         res.json({
             success: true,
@@ -92,8 +77,8 @@ router.get('/findinfo/:name', function (req, res) {
  * services
  */
 
-router.get('/findinfo/:name', function (req, res) {
-    Service.getServiceByPrice(req.params.service_price, function (err, services) {
+router.get('/findinfo/:price', function (req, res) {
+    Service.getServiceByPrice(req.params.price, function (err, services) {
         if (err) throw err;
         if (!services) {
             res.json({
