@@ -53,29 +53,16 @@ app.use(expressvalidator({
     }
 }));
 
-/**Passport */
-//* Its purpose to authenticate the user information
-app.use(passport.initialize());
-app.use(passport.session());
-
-/**Connect Flash */
-app.use(flash());
-
-/**Global Varable */
-app.use(function(req,res,next){
-    res.locals.success_msg = req.flash('success_msg');
-    res.locals.error_msg = req.flash('error_msg');
-    res.locals.error = req.flash('error');
-    res.locals.user = req.user || null;
-    next();
-});
-
 /**Route for model */
 //* Its purpose to call api
 var users = require('./routes/users');
 var restaurants = require('./routes/restaurants');
 var ratings = require('./routes/ratings');
 var photos = require('./routes/photos');
+var foods = require('./routes/foods');
+var comments = require('./routes/comments');
+var orders = require('./routes/orders');
+var messages = require('./routes/messages');
 
 /**URL for model */
 //* Its purpose to call the right api for model
@@ -83,6 +70,10 @@ app.use('/api/users',users);
 app.use('/api/restaurants',restaurants);
 app.use('/api/ratings',ratings);
 app.use('/api/photos',photos);
+app.use('/api/comments',comments);
+app.use('/api/foods',foods);
+app.use('/api/orders',orders);
+app.use('/api/messages',messages);
 
 /**Set up Server */
 app.listen(port,function(){
