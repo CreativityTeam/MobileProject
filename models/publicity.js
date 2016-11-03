@@ -29,10 +29,6 @@ module.exports.createPublicity = function (newPublicity, callback) {
     newPublicity.save(callback);
 };
 
-module.exports.getAllPublicity = function (callback) {
-    Publicity.findAdmin(callback);
-};
-
 module.exports.getPublicityById = function (id, callback) {
     Publicity.findById(id, callback);
 };

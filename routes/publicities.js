@@ -180,8 +180,7 @@ router.delete('/deletephoto/:id',function(req,res){
         if(err) throw err;
         for(var i = 0;i < publicity.photos.length ; i++){
             if(publicity.photos[i] == req.body._id){
-                delete publicity.photos[i];
-                publicity.photos.length--;
+                publicity.photos.splice(i,1);
             }
         }
         Publicity.createPublicity(publicity,function(err,publicity){
