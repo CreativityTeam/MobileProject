@@ -63,6 +63,8 @@ var foods = require('./routes/foods');
 var comments = require('./routes/comments');
 var orders = require('./routes/orders');
 var messages = require('./routes/messages');
+var publicities = require('./routes/publicities');
+var services = require('./routes/services');
 
 /**URL for model */
 //* Its purpose to call the right api for model
@@ -74,6 +76,8 @@ app.use('/api/comments',comments);
 app.use('/api/foods',foods);
 app.use('/api/orders',orders);
 app.use('/api/messages',messages);
+app.use('/api/publicities',publicities);
+app.use('/api/services',services);
 
 /**Set up Server */
 app.listen(port,function(){
