@@ -76,6 +76,8 @@ var users = require('./routes/users');
 var restaurants = require('./routes/restaurants');
 var ratings = require('./routes/ratings');
 var photos = require('./routes/photos');
+var publicities = require('./routes/publicities');
+var services = require('./routes/services');
 
 /**URL for model */
 //* Its purpose to call the right api for model
@@ -83,6 +85,8 @@ app.use('/api/users',users);
 app.use('/api/restaurants',restaurants);
 app.use('/api/ratings',ratings);
 app.use('/api/photos',photos);
+app.use('/api/publicities',publicities);
+app.use('/api/services',services);
 
 /**Set up Server */
 app.listen(port,function(){
