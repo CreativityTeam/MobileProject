@@ -231,6 +231,7 @@ router.put('/updatephoto/:id/:idphoto',function(req,res){
             if(err) throw err;
             res.json({
                 success : true,
+                data : restaurant,
                 msg : "Successfully update"
             });
         });
@@ -247,6 +248,7 @@ router.put('/updatecomment/:id/:idcomment',function(req,res){
             if(err) throw err;
             res.json({
                 success : true,
+                data : restaurant,
                 msg : "Successfully update"
             });
         });
@@ -263,6 +265,7 @@ router.put('/updaterating/:id/:idrating',function(req,res){
             if(err) throw err;
             res.json({
                 success : true,
+                data : restaurant,
                 msg : "Successfully update"
             });
         });
@@ -279,6 +282,7 @@ router.put('/updateservices/:id/:idservice',function(req,res){
             if(err) throw err;
             res.json({
                 success : true,
+                data : restaurant,
                 msg : "Successfully update"
             });
         });
@@ -295,6 +299,7 @@ router.put('/updatepublicities/:id/:idpublicity',function(req,res){
             if(err) throw err;
             res.json({
                 success : true,
+                data : restaurant,
                 msg : "Successfully update"
             });
         });
@@ -325,8 +330,6 @@ router.delete('/deletecomment/:id/:idcomment',function(req,res){
         if(err) throw err;
         for(var i = 0;i < restaurant.comments.length ; i++){
             if(restaurant.comments[i] == req.params.idcomment){
-                //delete restaurant.comments[i];
-                //restaurant.comments.length--;
                 restaurant.comments.splice(i,1);
             }
         }
@@ -346,8 +349,6 @@ router.delete('/deletephoto/:id/:idphoto',function(req,res){
         if(err) throw err;
         for(var i = 0;i < restaurant.photos.length ; i++){
             if(restaurant.photos[i] == req.params.idphoto){
-                //delete restaurant.photos[i];
-                //restaurant.photos.length--;
                 restaurant.photos.splice(i,1);
             }
         }
@@ -367,8 +368,6 @@ router.delete('/deleteservice/:id/:idservice',function(req,res){
         if(err) throw err;
         for(var i = 0;i < restaurant.services.length ; i++){
             if(restaurant.services[i] == req.params.idservice){
-                //delete restaurant.services[i];
-                //restaurant.services.length--;
                 restaurant.services.splice(i,1);
             }
         }
@@ -388,8 +387,6 @@ router.delete('/deletepublicity/:id/:idpublicity',function(req,res){
         if(err) throw err;
         for(var i = 0;i < restaurant.publicities.length ; i++){
             if(restaurant.publicities[i] == req.params.idpublicity){
-                //delete restaurant.publicities[i];
-                //restaurant.publicities.length--;
                 restaurant.publicities.splice(i,1);
             }
         }

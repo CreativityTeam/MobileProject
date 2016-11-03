@@ -63,7 +63,7 @@ passport.use(new LocalStrategy(
 
 /**Login function */
 router.post('/login',function(req,res,next){
-   passport.authenticate('local',function(err,user,info){
+   passport.authenticate('local',function(err,user){
        if(err) return next(err);
        if(!user){
             return res.json({
@@ -181,7 +181,8 @@ router.put('/update/:token',function(req,res){
                 if(err) throw err;
                 res.json({
                     success : true,
-                    masg : "Successfully Updated"
+                    data : user,
+                    msg : "Successfully Updated"
                 });
             });
         });
@@ -199,7 +200,8 @@ router.put('/addresfav/:token',function(req,res){
                 if(err) throw err;
                 res.json({
                     success : true,
-                    masg : "Successfully Updated"
+                    data : user,
+                    msg : "Successfully Updated"
                 });
             });
         });
@@ -217,7 +219,8 @@ router.put('/addfoodfav/:token',function(req,res){
                 if(err) throw err;
                 res.json({
                     success : true,
-                    masg : "Successfully Updated"
+                    data : user,
+                    msg : "Successfully Updated"
                 });
             });
         });

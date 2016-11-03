@@ -253,7 +253,8 @@ router.put('/addphoto/:id/:idphoto',function(req,res){
             if(err) throw err;
             res.json({
                 success : true,
-                msg : "Successfully update"
+                msg : "Successfully update",
+                data : food
             });
         });
     });
@@ -274,7 +275,8 @@ router.put('/addcomment/:id/:idcomment',function(req,res){
             if(err) throw err;
             res.json({
                 success : true,
-                msg : "Successfully update"
+                msg : "Successfully update",
+                data : food
             });
         });
     });
@@ -295,7 +297,8 @@ router.put('/addrating/:id/:idrating',function(req,res){
             if(err) throw err;
             res.json({
                 success : true,
-                msg : "Successfully update"
+                msg : "Successfully update",
+                data : food
             });
         });
     });
@@ -345,7 +348,6 @@ router.delete('/deletecomment/:id',function(req,res){
         for(var i = 0;i < food.comments.length ; i++){
             if(food.comments[i] == req.body.comment_id){
                 food.comments.splice(i,1);
-                break;
             }
         }
         Food.createFood(food,function(err,food){
@@ -374,7 +376,6 @@ router.delete('/deletephoto/:id',function(req,res){
         for(var i = 0;i < food.photos.length ; i++){
             if(food.photos[i] == req.body.photo_id){
                 food.photos.splice(i,1);
-                break;
             }
         }
         Food.createFood(food,function(err,food){
