@@ -1,27 +1,23 @@
 /**
- * Created by K on 10/31/2016.
+ * Created by K on 10/2/2016.
  */
 
 var mongoose = require('mongoose');
 var PublicitySchema = mongoose.Schema({
-    publicity_id: {
-        type : String
-    },
-
     publicity_name: {
         type: String
     },
 
-    desciption: {
+    publicity_desciption: {
         type: String
     },
 
-    photos:[{
+    photos: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'photo'
     }],
 
-    ad_price: {
+    publicity_price: {
         type: Number
     }
 });
@@ -29,25 +25,29 @@ var PublicitySchema = mongoose.Schema({
 var Publicity = module.exports = moongose.model('publicity', PublicitySchema);
 
 /*Create Publicity*/
-module.exports.createPublicity = function(newPublicity, callback){
+module.exports.createPublicity = function (newPublicity, callback) {
     newPublicity.save(callback);
 };
 
-module.exports.getPublicityById = function(id, callback){
+module.exports.getAllPublicity = function (callback) {
+    Publicity.findAdmin(callback);
+};
+
+module.exports.getPublicityById = function (id, callback) {
     Publicity.findById(id, callback);
 };
 
-module.exports.getPublicityByName = function(name, callback){
-    var query = {'publicity_name' : name};
-    Publicity.find(name, callback);
+module.exports.getPublicityByName = function (name, callback) {
+    var query = {publicity_name: name};
+    Publicity.find(query, callback);
 };
 
-module.exports.getPublicityByPrice = function(price, callback){
-    var query = {'ad_price' : price};
-    Publicity.find(price, callback);
+/**Find all photos belong to this Publicity */
+module.exports.findPhotosBelong = function (id, callback) {
+    Publicity.findById(id).populate('photos').exec(callback);
 };
 
 /*Remove Publicity*/
-module.exports.removePublicity = function(id, callback){
+module.exports.removePublicity = function (id, callback) {
     Publicity.findByIdAndRemove(id, callback);
 };
