@@ -101,3 +101,4 @@ module.exports.deleteRestaurant = function(id,callback){
     var query = { _id : id};
     Restaurant.findOneAndRemove(query,callback);
 };
+
