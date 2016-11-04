@@ -74,7 +74,8 @@ module.exports.findFoodByPrice = function(price,operator,callback){
 
 /**Find the Restaurant that Food belongs to */
 module.exports.findRestaurant = function(id,callback){
-    Food.findById(id).populate('restaurant').exec(callback);
+    var query = { res_belong : id }
+    Food.find(query,callback);
 };
 
 /**Find all comments belong to this Food */
