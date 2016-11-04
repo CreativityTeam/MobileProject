@@ -5,6 +5,8 @@ var User = require('../models/user');
 var jwt = require('jwt-simple');
 var configAuth = require('../config/auth');
 
+/**Input : Id Sender */
+/**OutPut: List Outbox */
 function getMesSender(id, callback) {
     var listMessage = [{
         idSender: String,
@@ -42,6 +44,9 @@ function getMesSender(id, callback) {
     });
 };
 
+
+/**Input : Id Receiver */
+/**OutPut: List Inbox */
 function getMesReceiver(id, callback) {
     var listMessage = [{
         idReceiver: String,
