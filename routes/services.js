@@ -116,6 +116,24 @@ router.put('/updateinfo/:id', function (req, res) {
     });
 });
 
+/**Request
+ * param
+ *  service_name
+ * */
+/**Response
+ * service
+ */
+
+router.get('/findall', function (req, res) {
+    Service.findAll(err,function(err,service){
+        if(err) throw err;
+        res.json({
+            success : true,
+            data : service
+        });
+    });
+});
+
 router.delete('/deleteservice/:id', function (req, res) {
     Service.removeService(req.params.id, function (err) {
         if (err) throw err;
@@ -125,4 +143,6 @@ router.delete('/deleteservice/:id', function (req, res) {
         });
     });
 });
+
+
 module.exports = router;

@@ -22,12 +22,14 @@ router.post('/create',function(req,res){
     var time_ordered = req.body.time_ordered;
     var location_ordered = req.body.location_ordered;
     var comment = req.body.comment;
+    var price = req.body.price;
     var newOrder = new Order({
         user_order: user_order,
         foods : foods,
         services : services,
         time_ordered: time_ordered,
         location_ordered: location_ordered,
+        total_price : price ,
         comment: comment        
     });
     
@@ -80,8 +82,8 @@ router.get('/findinfobyshipper/:shipper_id',function(req,res){
 /**Response
  * data: order
  */
-router.get('/findinfobyuser/:user_order',function(req,res){
-    Order.getOrderByUserOrder(req.params.user_order,function(err,order){
+router.get('/findinfobyuser/:user_id',function(req,res){
+    Order.getOrderByUserOrder(req.params.user_id,function(err,order){
         if(err) throw err;
         res.json({
             success:true,
@@ -356,6 +358,27 @@ router.put('/updateservicequant/:id',function(req,res){
                     success : true,
                     msg : "Successfully Update",
                     data : order.services
+            });
+        });
+    });
+});
+
+/**Request 
+ * param 
+ *  id: Order ID 
+ * body 
+ *  _Update Price */
+/**Response Array Service */
+router.put('/updateprice/:id',function(req,res){
+    Order.getOrderById(req.params.id,function(err,order){
+        if(err) throw err;
+        order.total_price = req.body.price;
+        Order.createOrder(order,function(err,order){
+                if(err) throw err;
+                res.json({
+                    success : true,
+                    msg : "Successfully Update",
+                    data : order
             });
         });
     });

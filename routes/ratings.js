@@ -14,4 +14,13 @@ router.post('/addrating',function(req,res){
     });
 });
 
+router.get('/getrating/:id',function(req,res){
+    Rating.getRatingById(req.params.id,function(err,rating){
+        if(err) throw err;
+        res.json({
+            data : rating.score    
+        });
+    });
+});
+
 module.exports = router;

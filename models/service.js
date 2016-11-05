@@ -36,6 +36,10 @@ module.exports.getServiceByPrice = function (price, callback) {
     Service.find(query, callback);
 };
 
+module.exports.findAll = function(callback){
+    Service.find(callback);
+}
+
 /*Remove Service*/
 module.exports.removeService = function (id, callback) {
     Service.findByIdAndRemove(id, callback);

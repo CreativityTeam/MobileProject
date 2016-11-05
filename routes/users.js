@@ -269,8 +269,10 @@ router.get('/findfoodfav/:token',function(req,res){
     }
 });
 
-router.delete('/deleteFoodFav/:id',function(req,res){
-    User.getUserById(req.params.id,function(err,user){
+router.delete('/deleteFoodFav/:token',function(req,res){
+    var token = req.params.token;
+    var decoded = jwt.decode(token,configAuth.secret);
+    User.getUserById(decoded._id,function(err,user){
         if(err) throw err;
         for(var i = 0;i < user.foods_favorite.length ; i++){
             if(user.foods_favorite[i] == req.body._id){
@@ -288,8 +290,10 @@ router.delete('/deleteFoodFav/:id',function(req,res){
     });
 });
 
-router.delete('/deleteResFav/:id',function(req,res){
-    User.getUserById(req.params.id,function(err,user){
+router.delete('/deleteResFav/:token',function(req,res){
+    var token = req.params.token;
+    var decoded = jwt.decode(token,configAuth.secret);
+    User.getUserById(decoded._id,function(err,user){
         if(err) throw err;
         for(var i = 0;i < user.res_favorite.length ; i++){
             if(user.res_favorite[i] == req.body._id){
