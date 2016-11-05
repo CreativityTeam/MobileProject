@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var configAuth = require('../config/auth');
 var Restaurant = require('../models/restaurant');
 
 router.post('/register',function(req,res){
@@ -50,8 +51,10 @@ router.get('/findinfo/:id',function(req,res){
 
 /**Input : User ID */
 /**Output : Admin of Rrestaurant */
-router.get('/findad/:id',function(req,res){
-    Restaurant.findAdmin(req.params.id,function(err,restaurant){
+router.get('/findad/:token',function(req,res){
+    var token = req.params.token;
+    var decoded = jwt.decode(token,configAuth.secret);
+    Restaurant.findAdmin(decoded._id,function(err,restaurant){
         if(err) throw err;
         if(!restaurant){
             res.json({
