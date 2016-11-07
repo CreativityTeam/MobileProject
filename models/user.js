@@ -85,6 +85,10 @@ module.exports.comparePassword = function(password,hash){
     return bcrypt.compareSync(password,hash);
 };
 
+module.exports.getAllUser = function(callback){
+    User.find(callback);
+};
+
 module.exports.findUserByName = function(name,callback){
     var query = {'local.name' : name};
     User.find(query,callback);
