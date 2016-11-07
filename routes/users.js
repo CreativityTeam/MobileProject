@@ -131,6 +131,44 @@ router.post('/createFace',function(req,res){
     });
 });
 
+router.put('/changeRole/:id',function(req,res){
+    User.getUserById(req.params.id,function(err,user){
+        if(err) throw err;
+        user.role = req.body.role;
+        User.updateUser(user,function(err,user){
+            res.json({
+                success : true,
+                msg : "Successfully update",
+                data : user
+            });
+        });
+    });       
+})
+
+/**Get all user */
+router.get('/findUserAll',function(req,res){
+    User.getAllUser(function(err,users){
+        if(err) throw err;
+        if(users){
+            res.json({
+                success : true,
+                data : users
+            });
+        }
+    });    
+});
+
+/**Get user id */
+router.get('/findUserID/:id',function(req,res){
+    User.getUserById(req.params.id,function(err,user){
+        if(err) throw err;
+        res.json({
+                success : true,
+                data : user
+            });
+        });
+});
+
 /**Search Name */
 router.get('/find/:name',function(req,res){
     User.findUserByName(req.params.name,function(err,users){
