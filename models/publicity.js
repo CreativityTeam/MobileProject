@@ -38,6 +38,10 @@ module.exports.getPublicityByName = function (name, callback) {
     Publicity.find(query, callback);
 };
 
+module.exports.getAllPublicity = function (callback) {
+    Publicity.find(callback);
+};
+
 /**Find all photos belong to this Publicity */
 module.exports.findPhotosBelong = function (id, callback) {
     Publicity.findById(id).populate('photos').exec(callback);

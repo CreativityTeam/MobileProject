@@ -31,6 +31,21 @@ router.post('/create', function (req, res) {
 });
 
 /**Request
+ */
+/**Response
+ * All publicity
+ */
+router.get('/findAllPublicity', function (req, res) {
+    Publicity.getAllPublicity(function (err, publicity){
+        if(err) throw err;
+        res.json({
+            success: true,
+            data: publicity
+        });
+    });
+});
+
+/**Request
  * param
  *  id: Publicity ID
  */
