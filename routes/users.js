@@ -201,16 +201,13 @@ router.get('/findone/:token',function(req,res){
     }
 });
 
-router.put('/update/:token',function(req,res){
-    var token = req.params.token;
-    if(token){
-        var decoded = jwt.decode(token,configAuth.secret);
-        User.getUserById(decoded._id,function(err,user){
+router.put('/update/:id',function(req,res){
+        console.log(req.body);
+        User.getUserById(req.params.id,function(err,user){
         if(err) throw err;
-        user.role = req.body.role;
         user.avatar = req.body.url;
         user.gender = req.body.gender;
-        user.birthday = req.body.bod;
+        user.birthday = req.body.birthday;
         user.address = req.body.address;
         user.phone = req.body.phone;
         user.about = req.body.about;
@@ -224,7 +221,6 @@ router.put('/update/:token',function(req,res){
                 });
             });
         });
-    }
 });
 
 router.put('/addresfav/:token',function(req,res){
