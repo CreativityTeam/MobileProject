@@ -16,7 +16,8 @@ mongoose.connect('mongodb://admin:admin@ds048319.mlab.com:48319/mobileapp',funct
     if(err) throw ('Please check your connection');
     console.log('Connect Successfully');
 });
-
+/**Upload Folder */
+app.use(express.static(__dirname + '/uploads'));
 app.use(function(req,res,next){
     res.header('Access-Control-Allow-Origin','*');
     res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE');
