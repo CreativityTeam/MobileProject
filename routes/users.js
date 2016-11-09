@@ -108,7 +108,16 @@ router.post('/createFace',function(req,res){
         }else{
             var id = req.body.id;
             var name = req.body.name;
+            var email = req.body.email;
+            var gender = req.body.gender;
+            var avatar = req.body.picture.data.url;
             var newUser = new User({
+                local : {
+                    email : email,
+                    name : name
+                },
+                avatar : avatar,
+                gender : gender,
                 facebook : {
                     id : id,
                     name : name
@@ -202,10 +211,9 @@ router.get('/findone/:token',function(req,res){
 });
 
 router.put('/update/:id',function(req,res){
-        console.log(req.body);
         User.getUserById(req.params.id,function(err,user){
         if(err) throw err;
-        user.avatar = req.body.url;
+        user.avatar = req.body.avatar;
         user.gender = req.body.gender;
         user.birthday = req.body.birthday;
         user.address = req.body.address;

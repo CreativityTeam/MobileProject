@@ -20,7 +20,7 @@ router.post('/addphoto',upload.any(),function(req,res){
     if(req.files){
         req.files.forEach(function(file){
                 var photo = new Photo();
-                photo.url = file.filename;
+                photo.url = "http://localhost:3000/" + file.filename;
                 photo.description = req.body.decription;
                 photo.userid = req.body.userid;
                 Photo.addPhoto(photo,function(err,photo){
