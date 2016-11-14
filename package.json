@@ -4,11 +4,11 @@
   "description": "Mobile Project",
   "main": "app.js",
   "scripts": {
-    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nhatndm/MobileProject.git"
+    "url": "git+https://github.com/CreativityTeam/MobileProject.git"
   },
   "keywords": [
     "mobile",
@@ -18,9 +18,9 @@
   "author": "Creative Team",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nhatndm/MobileProject/issues"
+    "url": "https://github.com/CreativityTeam/MobileProject/issues"
   },
-  "homepage": "https://github.com/nhatndm/MobileProject#readme",
+  "homepage": "https://github.com/CreativityTeam/MobileProject.git#readme",
   "dependencies": {
     "angular": "^1.5.8",
     "angular-ui-router": "^0.3.1",

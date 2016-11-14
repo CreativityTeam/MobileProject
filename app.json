@@ -1,0 +1,8 @@
+{
+    "name" : "Server Project",
+    "description" : "This is Project Server.",
+    "repository" : "https://github.com/CreativityTeam/MobileProject.git",
+    "logo" : "http://node-js-sample.herokuapp.com/node.svg",
+    "keywords" : ["node","project","mobile"],
+    "image" : "heroku/nodejs"
+}
