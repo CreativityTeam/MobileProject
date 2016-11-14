@@ -1,6 +1,5 @@
 var express = require('express');
 var app = express();
-var port = process.env.port || 3000;
 var passport = require('passport');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
@@ -85,7 +84,9 @@ app.use('/checkconnection/',function(req,res){
     });
 });
 
+/**Set port */
+app.set('port',(process.env.PORT || 3000));
 /**Set up Server */
-app.listen(port,function(){
-    console.log("Server is running at :" + port);
+app.listen(app.get('port'),function(){
+    console.log("Server is running at :", app.get('port'));
 })
